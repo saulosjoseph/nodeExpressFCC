@@ -9,7 +9,11 @@ var app = express();
 
 
 /** 1) Meet the node console. */
-console.log('Hello World')
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.path} - ${req.ip}`);
+    next();
+});
+app.use(express.static(`${__dirname}/public`))
 
 
 /** 2) A first working Express Server */
@@ -22,15 +26,17 @@ app.get('/', (req, res) => {
 
 
 /** 4) Serve static assets  */
-app.use(express.static(`${__dirname}/public`))
+
 
 /** 5) serve JSON on a specific route */
 const MESSAGE_STYLE = process.env.MESSAGE_STYLE;
 
 function jsonHandler(req, res) {
-    let message = "Hello json";
-    (process.env.MESSAGE_STYLE == "uppercase") ? message=message.toUpperCase() : message=message;
-    res.json({"message": message}); 
+    let messageObject = {"message": "Hello json"};
+    if(MESSAGE_STYLE && MESSAGE_STYLE === 'uppercase') {
+        messageObject.message = messageObject.message.toUpperCase();
+    }
+    return res.json(messageObject);
 }
 
 app.get("/json", jsonHandler);
