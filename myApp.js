@@ -22,9 +22,7 @@ app.get('/', (req, res) => {
 
 
 /** 4) Serve static assets  */
-app.use(()=>{
-    return res.sendFile(`${__dirname}/public/style.css` );
-})
+app.use(express.static(`${__dirname}/public/style.css`))
 
 /** 5) serve JSON on a specific route */
 
