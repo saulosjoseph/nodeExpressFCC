@@ -80,7 +80,7 @@ app.route('/name').get((req, res) => {
     })
 }).post((req, res) => {
     return res.json({
-        'teste': 'teste'
+        'name': `${firstname} ${lastname}`
     })
 });
   
