@@ -26,12 +26,11 @@ app.use(express.static(`${__dirname}/public`))
 
 /** 5) serve JSON on a specific route */
 let messageObject = {"message": "Hello json"};
+const MESSAGE_STYLE = process.env.MESSAGE_STYLE;
 
 function jsonHandler(req, res) {
-  if (process.env.MESSAGE_STYLE) {
-    messageObject.message = messageObject.message.toUpperCase()
-    return res.json({'deu':'certo'});
-  }
+    console.log(MESSAGE_STYLE);
+    return res.json(messageObject);
 }
 
 app.get("/json", jsonHandler);
