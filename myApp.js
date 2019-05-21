@@ -30,6 +30,7 @@ const MESSAGE_STYLE = process.env.MESSAGE_STYLE;
 function jsonHandler(req, res) {
     let messageObject = {"message": "Hello json"};
     if(MESSAGE_STYLE === 'uppercase') messageObject.message.toUpperCase();
+    console.log(MESSAGE_STYLE);
     return res.json(messageObject);
 }
 
