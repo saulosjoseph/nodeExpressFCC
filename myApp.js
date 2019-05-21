@@ -1,5 +1,6 @@
 'use strict';
 var express = require('express');
+const bodyParser = require('body-parser');
 var app = express();
 
 // --> 7)  Mount the Logger middleware here
@@ -10,6 +11,7 @@ var app = express();
 
 /** 1) Meet the node console. */
 app.use((req, res, next) => {
+    bodyParser.urlencoded({extended: false});
     console.log(`${req.method} ${req.path} - ${req.ip}`);
     next();
 });
