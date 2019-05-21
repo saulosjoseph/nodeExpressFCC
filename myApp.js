@@ -30,8 +30,8 @@ let messageObject = {"message": "Hello json"};
 function jsonHandler(req, res) {
   if (process.env.MESSAGE_STYLE) {
     messageObject.message = messageObject.message.toUpperCase()
-  } 
-  return res.json(messageObject);
+    return res.json({'deu':'certo'});
+  }
 }
 
 app.get("/json", jsonHandler);
