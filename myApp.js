@@ -28,7 +28,7 @@ app.use(express.static(`${__dirname}/public`))
 let messageObject = {"message": "Hello json"};
 
 function jsonHandler(req, res) {
-  if (process.env.MESSAGE_STYLE == "uppercase") {
+  if (process.env.MESSAGE_STYLE) {
     messageObject.message = messageObject.message.toUpperCase()
   } 
   return res.json(messageObject);
