@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 var express = require('express');
 var app = express();
 
@@ -22,6 +22,7 @@ app.get('/', (req, res) => {
 });
 
 
+
 /** 3) Serve an HTML file */
 
 
@@ -32,14 +33,14 @@ app.get('/', (req, res) => {
 const MESSAGE_STYLE = process.env.MESSAGE_STYLE;
 
 function jsonHandler(req, res) {
-    let messageObject = {"message": "Hello json"};
+    let messageObject = {'message': 'Hello json'};
     if(MESSAGE_STYLE && MESSAGE_STYLE === 'uppercase') {
         messageObject.message = messageObject.message.toUpperCase();
     }
     return res.json(messageObject);
 }
 
-app.get("/json", jsonHandler);
+app.get('/json', jsonHandler);
 
 /** 6) Use the .env file to configure the app */
  
@@ -49,7 +50,14 @@ app.get("/json", jsonHandler);
 
 
 /** 8) Chaining middleware. A Time server */
-
+app.get('/now', (req, res, next) => {
+    req.time = new Date().toString();
+    next();
+}, (req, res) => {
+    return res.json({
+        'time': req.time
+    })
+});
 
 /** 9)  Get input from client - Route parameters */
 
