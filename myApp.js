@@ -72,13 +72,14 @@ app.get('/:word/echo', (req, res) => {
 /** 10) Get input from client - Query parameters */
 // /name?first=<firstname>&last=<lastname>
 app.route('/name').get((req, res) => {
-    let firstname = req.query.first;
-    let lastname = req.query.last;
-    let echo =  req.params.word;
+    const firstname = req.query.first;
+    const lastname = req.query.last;
     return res.json({
         'name': `${firstname} ${lastname}`
     })
 }).post((req, res) => {
+    const firstname = req.body.first;
+    const lastname = req.body.last;
     return res.json({
         'name': `${firstname} ${lastname}`
     })
