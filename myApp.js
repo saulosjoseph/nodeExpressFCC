@@ -14,7 +14,7 @@ console.log('Hello World')
 
 /** 2) A first working Express Server */
 app.get('/', (req, res) => {
-    return res.send('Hello Express');
+    return res.sendFile(`${__dirname} + /views/index.html` );
 });
 
 
