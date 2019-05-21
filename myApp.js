@@ -12,6 +12,9 @@ var app = express();
 /** 1) Meet the node console. */
 app.use((req, res, next) => {
     bodyParser.urlencoded({extended: false});
+    next();
+});
+app.use((req, res, next) => {
     console.log(`${req.method} ${req.path} - ${req.ip}`);
     next();
 });
